@@ -5,7 +5,7 @@ import pygame
 # Constants
 SCREEN_WIDTH, SCREEN_HEIGHT = 800, 500
 PLAYER_Y = 380
-ENEMY_COUNT = 6
+ENEMY_COUNT = 1
 COLLISION_DISTANCE = 27
 
 # Initialize Pygame
@@ -59,7 +59,6 @@ def is_collision(ex, ey, bx, by):
 def show_score():
     score_text = font.render(f"Score : {score}", True, (255, 255, 255))
     screen.blit(score_text, (10, 10))
-
 def show_game_over():
     over_text = over_font.render("GAME OVER", True, (255, 255, 255))
     screen.blit(over_text, (200, 250))
@@ -92,7 +91,7 @@ while running:
     player_x += player_x_change
     player_x = max(0, min(player_x, SCREEN_WIDTH - 64))
     PLAYER_Y += player_y_change
-    PLAYER_Y = max(0, min(PLAYER_Y, SCREEN_HEIGHT - 34))
+    PLAYER_Y = max(0, min(PLAYER_Y, SCREEN_HEIGHT - 64))
 
     # Update Enemies
     for enemy in enemies:
@@ -114,7 +113,6 @@ while running:
             score += 1
             enemy["x"] = random.randint(0, SCREEN_WIDTH - 64)
             enemy["y"] = random.randint(50, 150)
-
         draw_enemy(enemy)
 
     # Update Bullet
